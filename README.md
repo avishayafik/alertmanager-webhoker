@@ -98,7 +98,7 @@ curl -vX POST http://127.0.0.1:5000/postjson  --header "Content-Type: applicatio
 
 ## for debugging purpose 
 
-http://prometheus.hosts-app.com:5000/
+http://webhooker-url.com:5000/
 
 * at the top of the page you will see 500 last trigger alerts 
 
@@ -108,3 +108,9 @@ http://prometheus.hosts-app.com:5000/
 
 
 ![trigger](images/last_json.png)
+
+
+TODO:
+
+* add docker-compose file
+* add helm charts 
