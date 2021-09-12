@@ -44,7 +44,7 @@ limit:
 
 ### UI with some info such as alert configuartion 
 
-http://prometheus-example.com:5000/
+http://your_host:5000/
 
 
 
