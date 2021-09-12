@@ -17,6 +17,9 @@ smtp_port: '587'
 
 ### examples:
 
+
+
+
 ### this alert will fire 
 limit:
  example_alert_awx:
@@ -32,6 +35,10 @@ limit:
     status: "firing"
     ## api  'https://docs.ansible.com/ansible-tower/3.2.6/html/towerapi/launch_jobtemplate.html'
     url: "https://example-awx.com/api/v2/job_templates/244/launch/"
+    ## alertname should be with annotation see README
+    #example:
+    #annotations:
+    #   alertname: example_alert_awx
     alertname:
        example_alert_awx: '{"extra_vars": {"example_var": "example_value","example_var2": "example_value2"}}'
 

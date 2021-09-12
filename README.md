@@ -1,7 +1,21 @@
 ### This project wrriten in order to get alertmanager event and send webhooks acorrdinaly 
 
+## prometheus/ thanos_rule rule
+```
+  - alert: example_alert_awx
+    expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
+    for: 5m
+    labels:
+      severity: P3
+    annotations:
+      alertname: example_alert_awx
+      summary: "example_alert_awx"
+      description: "example_alert_awx"
+
 
 ## alertmanager config example:
+'''
+
 ```
 receivers:
 - name: webhooker_opsgenie
