@@ -54,6 +54,7 @@ curl -vX POST http://127.0.0.1:5000/postjson  --header "Content-Type: applicatio
 
 
 ###json example
+```
 {
 	"receiver": "webhooker_opsgenie",
 	"status": "firing",
@@ -93,7 +94,7 @@ curl -vX POST http://127.0.0.1:5000/postjson  --header "Content-Type: applicatio
 	}
 
 }
-
+```
 
 ## for debugging purpose 
 
