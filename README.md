@@ -25,7 +25,7 @@ docker run --name=mysql-webhooker  --env=MYSQL_ROOT_PASSWORD=****  --network=hos
 
 docker build . -t your_docker_image
 
-docker run -e awx_username=***** -e awx_password=****  -e mysql_password=**** jenkins_token=****  your_docker_image
+docker run  -e smtp_username=**** -e smtp_password=**** -e awx_username=***** -e awx_password=****  -e mysql_password=**** jenkins_token=****  your_docker_image
 
 ### how to change configuration
 
