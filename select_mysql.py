@@ -3,12 +3,13 @@ import mysql.connector
 
 
 class Mysql_query_class():
-    def __init__(self,query,alert,password):
+    def __init__(self,query,alert,password,mysql_host):
         self.query = query
         self.password = password
         self.alert = alert
+        self.host = mysql_host
         self.dataBase = mysql.connector.connect(
-            host="ds-2.hosts-app.com",
+            host=self.host,
             user="root",
             passwd=password,
             database="mysql")

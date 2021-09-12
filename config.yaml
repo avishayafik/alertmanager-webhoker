@@ -3,6 +3,12 @@
 ## http url
 # awx job number
 
+
+## mysql url
+
+mysql_host: 'mysql-example.com'
+
+
 ### email notification upon action
 email: 'example@doamin.com'
 smtp: 'email-smtp.us-east-1.amazonaws.com'
@@ -12,7 +18,7 @@ smtp_port: '587'
 ### examples:
 
 ### this alert will fire 
-
+limit:
  example_alert_awx:
     ## which api do you want to trigger , type supported are awx/tower/jenkins/argo-events
     type: 'awx'
@@ -43,6 +49,9 @@ smtp_port: '587'
 
 ### jenkins example:
 
+### jenkins token should be passed via env var
+## jenkins_token
+
  test_jenkins:
     type: 'jenkins'
     email: 'ops@domain.com'
@@ -70,7 +79,6 @@ smtp_port: '587'
     #url: "http://webhook-eventsource-svc:12000"
     url: "http://localhost:12000/example"
     auth: false
-      token: "xxxxx"
     alertname:
        test_argo-events: '{"message":"this is my first webhook"}'
 

@@ -44,6 +44,8 @@ password = (os.environ['awx_password'])
 smtp_username = (os.environ['ses_username'])
 smtp_password = (os.environ['ses_password'])
 mysql_password = (os.environ['mysql_password'])
+mysql_host = (data['mysql_host'])
+
 
 class awx():
     def __init__(self,url,data,username,password):
@@ -132,7 +134,7 @@ def post():
                ### check in mysql if it is blocked
                try:
                    query = "select  * from alert WHERE time > DATE_SUB(NOW(), INTERVAL '%s' MINUTE)  and name='%s' and vars='%s';" % ((key[1]['blocked']),content,json_to_send)
-                   Mysql_query_obj = Mysql_query_class(query, alert, mysql_password)
+                   Mysql_query_obj = Mysql_query_class(query, alert, mysql_password,mysql_host)
                    blocked_alert = Mysql_query_obj.mysql_query()
                except Exception:
                    pass
@@ -178,7 +180,7 @@ def post():
                        logger.info(timestamp + ': task was running for  ' + content)
                        ### insert into mysql so it will be blocked next time
                        query = "INSERT INTO alert (name,vars) values ('%s','%s');" % (content,json_to_send)
-                       Mysql_query_obj = Mysql_query_class(query, alert, mysql_password)
+                       Mysql_query_obj = Mysql_query_class(query, alert, mysql_password,mysql_host)
                        blocked_alert = Mysql_query_obj.mysql_insert()
                    else:
                        logger.info (timestamp + ': Nothing to do')
@@ -190,7 +192,7 @@ def post():
 @app.route("/")
 
 def home():
-    run_result_obj = Mysql_query_class(query, alert, mysql_password)
+    run_result_obj = Mysql_query_class(query, alert, mysql_password,mysql_host)
     run_results = run_result_obj.mysql_get_results()
     global  JSON_DISPLAY_LIST
     JSON_DISPLAY_LIST =  JSON_DISPLAY_LIST[-20:]
@@ -199,7 +201,7 @@ def home():
 ## making sure there is alert table
 query = "CREATE TABLE IF NOT EXISTS mysql.alert ( name  VARCHAR(255), vars VARCHAR(255), time TIMESTAMP );"
 alert = 'test'
-Mysql_query_obj = Mysql_query_class(query, alert, mysql_password)
+Mysql_query_obj = Mysql_query_class(query, alert, mysql_password,mysql_host)
 Mysql_query_obj.mysql_drop_create_table()
 
 #run_results = Mysql_query_obj.mysql_get_results()
