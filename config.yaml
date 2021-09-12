@@ -1,0 +1,75 @@
+####
+
+## http url
+# awx job number
+
+### email notification upon action
+email: 'example@doamin.com'
+smtp: 'email-smtp.us-east-1.amazonaws.com'
+smtp_port: '587'
+
+
+### examples:
+
+### this alert will fire 
+
+ example_alert_awx:
+    ## which api do you want to trigger , type supported are awx/tower/jenkins/argo-events
+    type: 'awx'
+    ## eamil notify 
+    email: 'ops@domain.com'
+    ## body in email
+    email_message: 'this example '
+    ## how much time do u want alert will be blocked meanning it won't run the same alert twice in the below value (minutes)
+    blocked: 2
+    ## on what event you want it to trigger on , options firing/resolved
+    status: "firing"
+    url: "https://example-awx.com/api/v2/job_templates/244/launch/"
+    alertname:
+       example_alert_awx: '{"extra_vars": {"example_var": "example_value","example_var2": "example_value2"}}'
+
+
+ example_alert_awx_resloved:
+    type: 'awx'
+    email: 'ops@domain.com'
+    email_message: 'eks kafka lag rtbJsonEvent2 resolved'
+    blocked: 2
+    status: "resolved"
+    url: "https://example-awx.com/api/v2/job_templates/244/launch/"
+    alertname:
+       example_alert_awx: '{"extra_vars": {"example_var": "example_value","example_var2": "example_value2"}}'
+
+
+### jenkins example:
+
+ test_jenkins:
+    type: 'jenkins'
+    email: 'ops@domain.com'
+    email_message: 'jenkins example'
+    blocked: 1
+    status: "firing"
+    url: "https://jenkins-example.com/"
+    alertname:
+       test_jenkins:
+         ## jenkins job name to trigger
+         job: 'test123'
+
+#### argo-events example
+
+
+## see argoevent example https://argoproj.github.io/argo-events/quick_start/
+
+ test_argo-events:
+    type: 'argo_events'
+    email: 'ops@domain.com'
+    email_message: 'argo event example '
+    blocked: 1
+    status: "firing"
+    #url: "http://webhook-eventsource-svc:12000"
+    url: "http://localhost:12000/example"
+    auth: false
+      token: "xxxxx"
+    alertname:
+       test_argo-events: '{"message":"this is my first webhook"}'
+
+

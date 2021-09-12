@@ -1,0 +1,38 @@
+{
+	"receiver": "webhooker_opsgenie",
+	"status": "firing",
+	"alerts": [{
+		"status": "firing",
+		"labels": {
+			"alertname": "sin_mirror",
+			"cluster": "sin-prd-kafka-0_9_0_1",
+			"group": "sin-mirror",
+			"instance": "sin-prd-burrow.stapp.me:8237",
+			"job": "kafka-jmx-exporter",
+			"severity": "critical"
+		},
+		"annotations": {
+			"description": "kafka_connect_task_error is in error",
+			"summary": "kafka_connect_task_error restart"
+		},
+		"startsAt": "2020-01-09T09:35:41.409694616Z",
+		"endsAt": "0001-01-01T00:00:00Z",
+		"generatorURL": "http://fa0b5d027e31:9090/graph?g0.expr=kafka_burrow_total_lag%7Bgroup%3D%22sin-mirror%22%7D+%3E+10\u0026g0.tab=1"
+	}],
+	"groupLabels": {
+		"alertname": "sin_mirror"
+	},
+	"commonLabels": {
+		"alertname": "sin_mirror",
+		"cluster": "sin-prd-kafka-0_9_0_1",
+		"group": "sin-mirror",
+		"instance": "sin-prd-burrow.stapp.me:8237",
+		"job": "kafka-jmx-exporter",
+		"severity": "critical"
+	},
+	"commonAnnotations": {
+		"description": "kafka_connect_task_error is in error",
+		"summary": "kafka_connect_task_error restart"
+	},
+	"externalURL": "http://ds-1:9093"
+}

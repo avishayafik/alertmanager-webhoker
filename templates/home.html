@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+
+   <head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+   <body>
+      <h1> Webhooker Page </h1>
+      <p> Uptime(seconds): {{uptime}}</p>
+      <p>in hours: {{uptime/3600}}</p>
+       <p>in days: {{uptime/86400}}</p>
+      <h2>Last running alerts: </h2>
+
+<table>
+  <tr>
+    <th>Alert name</th>
+    <th>Vars</th>
+    <th>Date</th>
+  </tr>
+   {% for i  in  run_results %}
+    <tr>
+    <th>{{i[0]}}</th>
+    <th>{{i[1]}}</th>
+    <th>{{i[2]}}</th>
+   {% endfor %}
+  </tr>
+</table>
+
+
+      <h1> Rules: </h1>
+      {% for key , value in  rules.items() %}
+      <h3 style="color:Red;"> rule: {{key | pprint }}</h3>
+      <p></p>
+       <p><b>awx job url:    </b>{{value.url}}<p>
+       <p><b>blocked in minutes:    </b>{{value.blocked}}<p>
+      <p></p>
+
+      {% for i , val in  value.alertname.items() %}
+      </pre> <b>Alert: </b>  {{i}} </pre>
+      <p></p>
+      </pre > <b> awx_vars: </b> {{val}} </pre>
+      <p>#################</p>
+      {% endfor %}
+      <p></p>
+      {% endfor %}
+
+   </style>
+
+<h1> last json webhooker got form alertmanager </h1>
+<p1> this is for debuging purpose </p1>
+
+<head>
+        <ul>
+          {% for i  in  json_results %}
+          <div style="border: 2px solid black">{{i}}</div>
+          <p></p>
+          {% endfor %}
+        </ul>
+</head>
+
+
+
+<body>
+   </body>
+   </body>
+</html>

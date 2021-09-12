@@ -1,0 +1,7 @@
+flask
+requests
+yml
+PyYAML
+uptime
+prometheus_flask_exporter
+mysql-connector-python
