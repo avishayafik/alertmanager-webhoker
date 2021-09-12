@@ -12,9 +12,9 @@
       summary: "example_alert_awx"
       description: "example_alert_awx"
 
-
+```
 ## alertmanager config example:
-'''
+
 
 ```
 receivers:
