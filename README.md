@@ -21,7 +21,11 @@ receivers:
 in our case it will triggers awx templates
 
 ### how to run
-docker run -e awx_username=***** -e awx_password=**** registry.hosts-app.com/devops/monitoring/prometheus-group/alertmanager-webhooker
+docker run --name=mysql-webhooker --hostname=ds-2 --env=MYSQL_ROOT_PASSWORD=****  --network=host -p 0.0.0.0:3306:3306 --restart=on-failure --log-opt max-size=100m  --detach=true mysql:5.7 mysqld
+
+docker build . -t your_docker_image
+
+docker run -e awx_username=***** -e awx_password=****  -e mysql_password=**** your_docker_image
 
 ### how to change configuration
 

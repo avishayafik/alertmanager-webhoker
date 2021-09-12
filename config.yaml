@@ -24,6 +24,7 @@ smtp_port: '587'
     blocked: 2
     ## on what event you want it to trigger on , options firing/resolved
     status: "firing"
+    ## api  'https://docs.ansible.com/ansible-tower/3.2.6/html/towerapi/launch_jobtemplate.html'
     url: "https://example-awx.com/api/v2/job_templates/244/launch/"
     alertname:
        example_alert_awx: '{"extra_vars": {"example_var": "example_value","example_var2": "example_value2"}}'
@@ -48,6 +49,7 @@ smtp_port: '587'
     email_message: 'jenkins example'
     blocked: 1
     status: "firing"
+    ## jenkins url
     url: "https://jenkins-example.com/"
     alertname:
        test_jenkins:
