@@ -45,13 +45,15 @@ smtp_username = (os.environ['smtp_username'])
 smtp_password = (os.environ['smtp_password'])
 mysql_password = (os.environ['mysql_password'])
 mysql_host = (data['mysql_host'])
-
+jenkins_user_name =  (os.environ['jenkins_user_name'])
 
 class awx():
     def __init__(self,url,data,username,password):
         self.data = data
         self.url = url
         self.username = username
+
+
         self.password = password
     def awx(self):
           timestamp = time.strftime("%Y-%m-%d %X")
@@ -141,13 +143,15 @@ def post():
                if blocked_alert == False:
                    logger.info(timestamp + ': send http webhook to:')
                    logger.info(timestamp + ': ' + (key[1]['url']))
-                   logger.info(timestamp + ': vars sent:' + json_to_send )
+                   logger.info(timestamp + ': vars sent:' + str(json_to_send))
                    #### send  alert awx, argo or jenkins
                    if key[1]['type'] == 'argo_workflow':
                         argo = argo_events((key[1]['url']),json_to_send,username,password)
                         argo.argo_run()
                    elif key[1]['type'] == 'jenkins':
-                       run_jenkins = Jenkins_class((key[1]['url']),json_to_send,jenkins_token,key[1]['alertname']['job'])
+                       #print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1')
+                       #print(key[1]['alertname']['job'])
+                       run_jenkins = Jenkins_class((key[1]['url']),jenkins_user_name,jenkins_token,key[1]['alertname']['job'])
                        run_jenkins.build_job()
                    else:
                        runawx = awx((key[1]['url']), json_to_send, username, password)
@@ -204,7 +208,6 @@ alert = 'test'
 Mysql_query_obj = Mysql_query_class(query, alert, mysql_password,mysql_host)
 Mysql_query_obj.mysql_drop_create_table()
 
-#run_results = Mysql_query_obj.mysql_get_results()
 
 
 ## running flask webservice

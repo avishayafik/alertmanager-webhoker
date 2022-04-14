@@ -23,7 +23,7 @@ class Jenkins_class():
     def build_job(self):
         next_build_number = self.jenkins_server.get_job_info(self.JENKINS_JOB)['nextBuildNumber']
         self.jenkins_server.build_job(self.JENKINS_JOB, token=self.JENKINS_TOKEN)
-        print(next_build_number)
+        print("build number is" ,next_build_number)
         #time.sleep(10)
         #build_info = self.jenkins_server.get_build_info(self.JENKINS_JOB, next_build_number)
         #return build_info
