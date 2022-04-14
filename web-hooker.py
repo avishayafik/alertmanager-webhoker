@@ -34,7 +34,7 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
-data = yaml.load(open('config.yaml'))
+data = yaml.safe_load(open('config.yaml'))
 print ("alert config:")
 print(data['limit'])
 
